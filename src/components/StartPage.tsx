@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../hooks/hookRedux';
@@ -9,7 +8,8 @@ import { ReactComponent as Building } from '../images/building.svg';
 import Box from '../ui/Box';
 import MapComponent from './MapComponent';
 import ObjectPhotos from './ObjectPhotos';
-import { useNumberTriad } from '../hooks/hookNumber';
+import TableLive from './TableLive';
+import TableBusiness from './TableBusiness';
 
 const StartPageStyle = styled.div`
   flex-grow: 1;
@@ -110,7 +110,15 @@ const StartPage = () => {
         '';
     }
   };
-
+  const getTableComponent = () => {
+    switch (data?.mode) {
+      case 'live':
+        return TableLive;
+      default:
+        return TableBusiness;
+    }
+  };
+  const TableComponent = getTableComponent();
   return (
     <StartPageStyle>
       <Header>
@@ -189,28 +197,7 @@ const StartPage = () => {
           ))}
         </ImageContainer>
       </Container>
-      <table>
-        <thead>
-          <tr>
-            <th>Площадь (кв.м.)</th>
-            <th>НДС</th>
-            <th>Эксплутационные расходы</th>
-            <th>Цена</th>
-            <th>Этаж</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.objects.map((object) => (
-            <tr key={object.UID}>
-              <td>{object?.totalarea}</td>
-              <td>{object?.vatType} руб.</td>
-              <td>{object?.otherUtilitiesPayment}</td>
-              <td>{useNumberTriad(object?.totalPrice)} руб.</td>
-              <td>{object?.floor}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <TableComponent objects={data?.objects || []} />
       {data?.pictures.map((pictures, idx) => (
         <ObjectPhotos pictures={pictures} key={idx} />
       ))}

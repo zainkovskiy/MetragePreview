@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAppSelector } from '../hooks/hookRedux';
-import { ReactComponent as Logo } from '../images/logo.svg';
+import logoUrl from '../images/logo.svg';
 import Realtor from './Realtor';
 
 const HeaderStyle = styled.div`
@@ -13,14 +13,17 @@ const HeaderStyle = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-const LogoStyle = styled(Logo)`
-  fill: #fff;
+
+const Logo = styled.img`
+  @media (max-width: 480px) {
+    width: 25%;
+  }
 `;
 const Header = () => {
   const realtor = useAppSelector((state) => state.preview.data?.realtor);
   return (
     <HeaderStyle>
-      <LogoStyle />
+      <Logo src={logoUrl} />
       {realtor && <Realtor realtor={realtor} />}
     </HeaderStyle>
   );

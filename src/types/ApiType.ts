@@ -5,6 +5,7 @@ export interface IApi {
   objects: IObject[];
   pictures: IPictures[];
   realtor: IRealtor | null;
+  mode: string;
 }
 
 interface IAddressInfo {
@@ -38,13 +39,15 @@ export interface IRealtor {
   avatar: string;
 }
 
-interface IObject {
+export interface IObject {
   UID: number;
   floor: number;
   otherUtilitiesPayment: string;
   price: number;
   totalPrice: number;
   totalarea: number;
+  livingArea: number;
+  roomsCount: number;
   type: string;
   vatType: string;
 }
