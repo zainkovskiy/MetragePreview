@@ -64,7 +64,7 @@ const ObjectPhotos: React.FC<IObjectPhotos> = ({ pictures }) => {
         ))}
       </ObjectPhotosContainer>
       <DialogWindow open={Boolean(openPhoto)} onClose={closeWindowPhoto}>
-        <img style={{ maxHeight: '80vh' }} src={openPhoto} />
+        <img style={{ maxHeight: '80vh', maxWidth: '90vw' }} src={openPhoto} />
       </DialogWindow>
     </>
   );

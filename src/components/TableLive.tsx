@@ -11,7 +11,7 @@ const TableLive: React.FC<ITableLive> = ({ objects }) => {
         <tr>
           <th>Площадь общая</th>
           <th>Площадь жилая</th>
-          <th>Комнотность</th>
+          <th>Комнатность</th>
           <th>Цена</th>
           <th>Этаж</th>
         </tr>
