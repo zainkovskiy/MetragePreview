@@ -6,6 +6,9 @@ export interface IApi {
   pictures: IPictures[];
   realtor: IRealtor | null;
   mode: string;
+  Description: string;
+  tableDriver: ITableDriver[];
+  objectParams: IObjectParams;
 }
 
 interface IAddressInfo {
@@ -58,4 +61,12 @@ interface IPlan {
 export interface IPictures {
   plan: IPlan[];
   photo: string[];
+}
+
+interface ITableDriver {
+  keyName: string;
+  keyTitle: string;
+}
+interface IObjectParams {
+  [key: string]: string;
 }

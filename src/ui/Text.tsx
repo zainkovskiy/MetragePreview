@@ -8,6 +8,7 @@ interface IText {
   size?: number;
   color?: string;
   tAlign?: 'center' | 'end' | 'start';
+  ws?: 'pre-line' | 'nowrap';
 }
 
 const TextComponent: React.FC<IText> = (props) => {
@@ -20,6 +21,7 @@ const Text = styled(TextComponent)`
   font-size: ${({ size }) => (size ? `${size}px` : '14px')};
   color: ${({ color }) => (color ? color : '#000')};
   ${({ tAlign }) => tAlign && `text-align: ${tAlign}`};
+  ${({ ws }) => ws && `white-space: ${ws}`};
 `;
 
 export default Text;

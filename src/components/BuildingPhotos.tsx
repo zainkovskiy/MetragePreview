@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
-import { IPictures } from '../types/ApiType';
-import Text from '../ui/Text';
-import Box from '../ui/Box';
 import styled from 'styled-components';
 import DialogWindow from './DialogWindow';
-import Characteristics from './Characteristics';
+import Text from '../ui/Text';
 
-interface IObjectPhotos {
-  pictures: IPictures;
+interface IBuildingPhotos {
+  pictures: string[];
 }
-const ImagePlan = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-`;
 const ObjectPhotosContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -38,25 +29,7 @@ const ImagePhoto = styled.img`
     }
   }
 `;
-const MobileImagePhoto = styled.img`
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.3s;
-  @media (min-width: 769px) {
-    display: none;
-  }
-  @media (hover: hover) {
-    &:hover {
-      transform: scale(1.05);
-    }
-    &:active {
-      transform: scale(1);
-    }
-  }
-`;
-const ObjectPhotos: React.FC<IObjectPhotos> = ({ pictures }) => {
+const BuildingPhotos: React.FC<IBuildingPhotos> = ({ pictures }) => {
   const [openPhoto, setOpenPhoto] = useState<string>('');
   const openWindowPhoto = (src: string) => {
     setOpenPhoto(src);
@@ -66,21 +39,11 @@ const ObjectPhotos: React.FC<IObjectPhotos> = ({ pictures }) => {
   };
   return (
     <>
-      <Characteristics openWindowPhoto={openWindowPhoto} />
+      <Text color='#85009e' size={16} bold>
+        Фотографии комплекса:
+      </Text>
       <ObjectPhotosContainer>
-        {pictures.photo.map((photo, idx) => {
-          if (idx === 0) {
-            return (
-              <MobileImagePhoto
-                src={photo}
-                key={idx}
-                onClick={() => {
-                  openWindowPhoto(photo);
-                }}
-              />
-            );
-          }
-
+        {pictures.map((photo, idx) => {
           return (
             <ImagePhoto
               src={photo}
@@ -99,4 +62,4 @@ const ObjectPhotos: React.FC<IObjectPhotos> = ({ pictures }) => {
   );
 };
 
-export default ObjectPhotos;
+export default BuildingPhotos;
