@@ -18,6 +18,8 @@ const StartPageStyle = styled.div`
   flex-direction: column;
   gap: 1rem;
   overflow: auto;
+  max-width: 1170px;
+  margin: 0 auto;
 `;
 const Header = styled.div`
   border-bottom: 1px solid #85009e;
